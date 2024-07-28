@@ -1,17 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
+// components/Button/SecondaryBtn.js
+import React from "react";
 
-const SecondaryBtn = ({href, children}) => {
+const SecondaryBtn = ({ href, children, onClick }) => {
   return (
-    <div>
-      <Link
-        href={href}
-        className=" px-7 py-3 text-lg rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 transition ease-in-out duration-300 text-white"
-      >
-        {children}
-      </Link>
-    </div>
-  )
-}
+    <button onClick={onClick} className="bg-slate-900 hover:bg-slate-700 text-lg text-white px-4 py-2 rounded-md">
+      {children}
+    </button>
+  );
+};
 
-export default SecondaryBtn
+export default SecondaryBtn;
