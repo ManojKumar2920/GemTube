@@ -1,4 +1,3 @@
-// components/Modal.js
 import React from "react";
 
 const Modal = ({ showModal, setShowModal, handleSubmit, email, setEmail }) => {

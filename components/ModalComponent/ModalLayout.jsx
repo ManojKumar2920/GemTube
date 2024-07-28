@@ -6,8 +6,6 @@ import Modal from '@/components/Modal';
 import { db } from '@/app/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { Toaster, toast } from 'sonner';
-import ComingSoon from '@/components/Coming/ComingSoon';
-import Footer from '@/components/Footer/Footer';
 
 const ModalLayout = () => {
     const [showModal, setShowModal] = useState(false);
