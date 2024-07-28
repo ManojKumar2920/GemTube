@@ -1,5 +1,4 @@
-'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import SecondaryBtn from '../Button/SecondaryBtn';
 import HeroBanner from '@/assets/hero-banner.jpg';
 import Image from 'next/image';
