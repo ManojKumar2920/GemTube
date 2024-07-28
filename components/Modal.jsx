@@ -6,7 +6,7 @@ const Modal = ({ showModal, setShowModal, handleSubmit, email, setEmail }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-md w-1/3">
+      <div className="bg-white p-6 rounded-md w-1/3 md:w-[80%]">
         <button
           onClick={() => setShowModal(false)}
           className="text-black float-right"
