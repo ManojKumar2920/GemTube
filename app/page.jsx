@@ -1,12 +1,11 @@
 import ComingSoon from "@/components/Coming/ComingSoon";
 import Footer from "@/components/Footer/Footer";
-import Hero from "@/components/Hero/Hero";
-import Image from "next/image";
+import ModalLayout from "@/components/ModalComponent/ModalLayout";
 
 export default function Home() {
   return (
     <div>
-      <Hero />
+      <ModalLayout />
       <ComingSoon />
       <Footer />
     </div>

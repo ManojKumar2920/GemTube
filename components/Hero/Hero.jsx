@@ -1,34 +1,10 @@
 'use client'
-import React, { useState } from "react";
-import SecondaryBtn from "../Button/SecondaryBtn";
-import HeroBanner from "@/assets/hero-banner.jpg";
-import Image from "next/image";
-import Modal from "../Modal";
-import { db } from "@/app/firebase";
-import { collection, addDoc } from "firebase/firestore";
-import { Toaster, toast } from "sonner";
+import React, { useState } from 'react';
+import SecondaryBtn from '../Button/SecondaryBtn';
+import HeroBanner from '@/assets/hero-banner.jpg';
+import Image from 'next/image';
 
-const Hero = () => {
-  const [email, setEmail] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await addDoc(collection(db, "emails"), {
-        email: email,
-        timestamp: new Date(),
-      });
-      setSubmitted(true);
-      setShowModal(false);
-      toast.success("Successfully joined the waitlist!");
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      toast.error("Failed to join the waitlist. Please try again.");
-    }
-  };
-
+const Hero = ({ setShowModal }) => {
   return (
     <div className="p-10 w-full flex flex-col items-center justify-center">
       <div className="w-[60%] md:w-[90%] text-center flex flex-col items-center justify-between gap-6">
@@ -51,14 +27,6 @@ const Hero = () => {
       <div className="pt-12 w-[90%] md:w-full">
         <Image src={HeroBanner} className="shadow-xl rounded-2xl" alt="Hero Banner" />
       </div>
-      <Modal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        handleSubmit={handleSubmit}
-        email={email}
-        setEmail={setEmail}
-      />
-      <Toaster richColors position="top-center" />
     </div>
   );
 };

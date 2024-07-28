@@ -14,6 +14,7 @@ const Modal = ({ showModal, setShowModal, handleSubmit, email, setEmail }) => {
           X
         </button>
         <h2 className="text-2xl mb-4">Join the Waitlist</h2>
+        <p className=" text-sm text-slate-500 mb-2">When we launch, you will receive first access to GemTube!</p>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="email"
@@ -27,6 +28,7 @@ const Modal = ({ showModal, setShowModal, handleSubmit, email, setEmail }) => {
             Submit
           </button>
         </form>
+        <p className=" text-sm text-slate-500 mt-4">Thanks for the support!</p>
       </div>
     </div>
   );

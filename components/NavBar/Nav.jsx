@@ -5,7 +5,7 @@ import Link from 'next/link';
 import GemTubeLogo from '@/assets/gemtube-logo.png';
 import PrimaryBtn from '../Button/PrimaryBtn';
 
-const Nav = () => {
+const Nav = ({ setShowModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -13,10 +13,10 @@ const Nav = () => {
   return (
     <div>
       <div className="flex w-full justify-between px-10 py-6 items-center">
-        <div className="flex items-center gap-1">
+        <Link href={"/"} className="flex items-center gap-1">
           <Image src={GemTubeLogo} width={40} alt="GemTube Logo" />
           <h1 className="text-xl font-bold">GemTube</h1>
-        </div>
+        </Link>
         <div className="md:hidden flex w-[40%] justify-between text-sm">
           <Link href={"/#comingsoon"} className="ease-linear transition hover:bg-gray-200 duration-300 p-2 rounded-lg">Features</Link>
           <Link href={"/#comingsoon"} className="ease-linear transition hover:bg-gray-200 duration-300 p-2 rounded-lg">FAQs</Link>
@@ -24,7 +24,11 @@ const Nav = () => {
           <Link href={"/"} className="ease-linear transition hover:bg-gray-200 duration-300 p-2 rounded-lg">Contribute</Link>
         </div>
         <div className="md:hidden">
-          <PrimaryBtn href={"/"} children={"Join Waitlist"} />
+          <PrimaryBtn
+            href="#"
+            children={"Join Waitlist"}
+            onClick={() => setShowModal(true)}
+          />
         </div>
         <button
           onClick={toggleMenu}
@@ -48,7 +52,7 @@ const Nav = () => {
         </button>
       </div>
       <div
-        className={`  fixed inset-0 bg-white shadow-lg transition-transform transform ${
+        className={`fixed inset-0 bg-white shadow-lg transition-transform transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -73,13 +77,16 @@ const Nav = () => {
               />
             </svg>
           </button>
-          <Link href={"/#comingsoon"} className="py-2 text-gray-800 ">Features</Link>
-          <Link href={"/#comingsoon"} className="py-2 text-gray-800 ">FAQs</Link>
-          <Link href={"/#comingsoon"} className="py-2 text-gray-800 ">Support</Link>
+          <Link href={"/#comingsoon"} onClick={toggleMenu} className="py-2 text-gray-800 ">Features</Link>
+          <Link href={"/#comingsoon"} onClick={toggleMenu} className="py-2 text-gray-800 ">FAQs</Link>
+          <Link href={"/#comingsoon"} onClick={toggleMenu} className="py-2 text-gray-800 ">Support</Link>
           <Link href={"/"} className="py-2 text-gray-800 hover:bg-gray-200 rounded-lg">Contribute</Link>
         </div>
         <div className="p-6">
-          <PrimaryBtn href={"/"} children={"Join Waitlist"} />
+          <PrimaryBtn
+            children={"Join Waitlist"}
+            onClick={() => setShowModal(true)}
+          />
         </div>
       </div>
     </div>
