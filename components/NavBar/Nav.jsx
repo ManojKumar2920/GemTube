@@ -19,7 +19,7 @@ const Nav = () => {
                 <Link href={"/"} className= '  ease-linear transition hover:bg-gray-200 duration-300 p-2 rounded-lg'>Contribute</Link>
             </div>
             <div>
-                <PrimaryBtn href={"/"} children={"Sign in"} />
+                <PrimaryBtn href={"/"} children={"Join Waitlist"} />
             </div>
         
         </div>
