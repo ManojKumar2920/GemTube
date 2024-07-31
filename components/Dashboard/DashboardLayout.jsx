@@ -66,16 +66,16 @@ const DashboardLayout = ({ children }) => {
 
         <nav className="flex-1 px-2 py-2">
           <Link
-            href="/dashboard/chat"
+            href="/dashboard/gemChat"
             className="block px-4 py-2 hover:bg-gray-200 rounded"
           >
-            Chat UI
+           Gem Chat
           </Link>
           <Link
-            href="/dashboard/projects"
+            href="/dashboard/gemText"
             className="block px-4 py-2 hover:bg-gray-200 rounded"
           >
-            My Projects
+            Gem Text
           </Link>
           <div className="mt-4 text-sm">
             <h3 className="px-4 py-2 text-gray-400">History</h3>

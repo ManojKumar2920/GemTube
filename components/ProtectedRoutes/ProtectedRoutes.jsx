@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
-        router.push('/login'); // Redirect to login page if not authenticated
+        router.push('/'); // Redirect to login page if not authenticated
       }
       setLoading(false);
     });
