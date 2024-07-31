@@ -119,7 +119,7 @@ const DashboardLayout = ({ children }) => {
           <div className="flex items-center">
             <span className="text-xl font-bold">Chat UI</span>
           </div>
-          <div className="flex items-center justify-end rounded-[25px] w-[35%] shadow-md p-1 relative">
+          <div className="flex items-center justify-end rounded-[25px] w-[35%] p-1 relative">
             <Image
               src={user.photoURL || "/assets/user-image.png"}
               width={35}
