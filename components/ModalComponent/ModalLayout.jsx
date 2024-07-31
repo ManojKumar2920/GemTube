@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-import Nav from '@/components/NavBar/Nav';
-import Hero from '@/components/Hero/Hero';
+import Nav from '@/components/Home/NavBar/Nav';
+import Hero from '@/components/Home/Hero/Hero';
 import Modal from '@/components/Modal';
 import { db } from '@/app/firebase';
 import { collection, addDoc } from 'firebase/firestore';
