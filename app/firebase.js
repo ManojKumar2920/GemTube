@@ -2,7 +2,7 @@
 'use client'
 
 import { initializeApp, getApps } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth"; // Import Auth and GoogleAuthProvider
+import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth"; // Import Auth and GoogleAuthProvider
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
@@ -24,4 +24,4 @@ const analytics = typeof window !== "undefined" && getAnalytics(app); // Ensure 
 const auth = getAuth(app); // Initialize Auth
 const googleProvider = new GoogleAuthProvider(); // Initialize Google Auth Provider
 
-export { db, analytics, auth, googleProvider }; // Export auth and googleProvider
+export { db, analytics, auth, googleProvider,signOut }; // Export auth and googleProvider

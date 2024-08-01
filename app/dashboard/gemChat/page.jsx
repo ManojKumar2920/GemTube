@@ -1,8 +1,13 @@
+// app/dashboard/gemChat/page.jsx
+
 'use client';
 
 import React, { useState } from 'react';
 import DashboardLayout from '@/components/Dashboard/DashboardLayout';
 import ProtectedRoute from '@/components/ProtectedRoutes/ProtectedRoutes';
+import ytdl from 'ytdl-core';
+import axios from 'axios';
+import { FFmpeg } from '@ffmpeg/ffmpeg';
 
 const ChatPage = () => {
   const [url, setUrl] = useState('');
@@ -16,21 +21,52 @@ const ChatPage = () => {
     setError('');
 
     try {
-      const response = await fetch('/api/convert', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
+      // Step 1: Download audio using ytdl-core
+      const audioStream = ytdl(url, { filter: 'audioonly' });
+      const chunks = [];
+
+      audioStream.on('data', chunk => chunks.push(chunk));
+      audioStream.on('end', async () => {
+        const audioBlob = new Blob(chunks, { type: 'audio/mp3' });
+
+        // Initialize FFmpeg
+        const ffmpeg = new FFmpeg();
+        await ffmpeg.load();
+
+        try {
+          // Step 2: Process audio with ffmpeg
+          ffmpeg.FS('writeFile', 'audio.mp3', await audioBlob.arrayBuffer());
+          await ffmpeg.run('-i', 'audio.mp3', 'output.wav');
+          const data = ffmpeg.FS('readFile', 'output.wav');
+
+          // Step 3: Convert Blob to Base64
+          const audioBase64 = Buffer.from(data).toString('base64');
+
+          // Step 4: Send Base64 audio to a transcription service
+          const response = await axios.post('YOUR_TRANSCRIPTION_API_URL', {
+            audio: audioBase64,
+          });
+
+          setTranscription(response.data.transcription);
+
+        } catch (ffmpegError) {
+          // Handle ffmpeg processing error
+          setError(`Error processing audio: ${ffmpegError.message}`);
+        } finally {
+          // Clean up ffmpeg resources
+          ffmpeg.FS('unlink', 'audio.mp3');
+          ffmpeg.FS('unlink', 'output.wav');
+        }
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch transcription');
-      }
+      audioStream.on('error', (downloadError) => {
+        setError(`Error downloading audio: ${downloadError.message}`);
+        setLoading(false);
+      });
 
-      const data = await response.json();
-      setTranscription(data.transcription);
     } catch (error) {
       setError('Error: ' + error.message);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
